@@ -1,0 +1,23 @@
+The grammar is structured to maintain operator precedence and associativity. Additive operators are managed at the expression level. In contrast, multiplicative operators are addressed at the term level. The factor rule supports unary operators, nested expressions, numeric literals, and identifiers. Including identifiers allows for expanding the system to non-numeric tokens. This enables flexibility inspired by large language models.
+
+
+EBNF Grammer Design
+
+expression = term , { ("+" | "-") , term } ;
+
+term       = factor , { ("*" | "/" | "%") , factor } ;
+
+factor     = number
+           | "(" , expression , ")"
+           | "-" , factor
+           | identifier ;
+
+number     = digit , { digit } , [ "." , digit , { digit } ] ;
+
+identifier = letter , { letter | digit } ;
+
+digit      = "0" | "1" | "2" | "3" | "4"
+           | "5" | "6" | "7" | "8" | "9" ;
+
+letter     = "a" | "b" | "c" | ... | "z"
+           | "A" | "B" | "C" | ... | "Z" ;
