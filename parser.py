@@ -1,29 +1,21 @@
-# ============================================================
-# LLM-Inspired Recursive Descent Parser
-# Course: CSC 461 – Programming Languages & Structures
-#
-# This program demonstrates:
-# - Recursive Descent Parsing
-# - Operator Precedence & Associativity
-# - Unary Operator Handling
-# - LLM-Inspired Adaptability
-# - Graceful Error Handling & Recovery
-# - Investigation of Edge Cases
-# ============================================================
+# Project Name: LLM Inspired Recursive Descent Parser
+# Course Name: Programming Languages & Structures (CSC 461)
+# This project implements a recursive descent parser that evaluates
+# arithmetic expressions while demonstrating adaptability inspired by
+# large language models (LLMs). The parser handles operator precedence,
+# unary operators, and includes robust error handling and recovery
+# mechanisms. It also investigates edge cases to ensure comprehensive
+# parsing capabilities.
 
 
-# ------------------------------------------------------------
-# Custom Exception Class for Parsing Errors
-# ------------------------------------------------------------
+
+# Exception class for parsing errors
 class ParseError(Exception):
     """Custom exception for syntax and parsing errors"""
     pass
 
 
-# ------------------------------------------------------------
-# TOKENIZER
-# Converts input string into a list of tokens
-# ------------------------------------------------------------
+# COnverting input string into streams of tokens
 def tokenize(expression):
     tokens = []
     i = 0
@@ -31,12 +23,12 @@ def tokenize(expression):
     while i < len(expression):
         char = expression[i]
 
-        # Ignore whitespace
+        # Ignoring thr whitespace
         if char.isspace():
             i += 1
             continue
 
-        # Handle numbers (integers and decimals)
+        # Handling numeric literals (integers and floats)
         if char.isdigit() or char == '.':
             num = char
             i += 1
@@ -48,7 +40,7 @@ def tokenize(expression):
             tokens.append(num)
             continue
 
-        # Handle identifiers (alphabetic tokens)
+        # Handling identifiers (alphabetic tokens)
         if char.isalpha():
             name = char
             i += 1
@@ -65,14 +57,13 @@ def tokenize(expression):
     return tokens
 
 
-# ------------------------------------------------------------
 # PARSER CLASS (Recursive Descent Implementation)
 #
 # Grammar:
 # expression → term { (+|-) term }
 # term       → factor { (*|/|%) factor }
 # factor     → number | (expression) | -factor | identifier
-# ------------------------------------------------------------
+
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -94,9 +85,8 @@ class Parser:
                 f"at position {self.pos}"
             )
 
-    # --------------------------------------------------------
+   
     # EXPRESSION LEVEL (+ and -)
-    # --------------------------------------------------------
     def parse_expression(self):
         value = self.parse_term()
 
@@ -111,9 +101,9 @@ class Parser:
 
         return value
 
-    # --------------------------------------------------------
+   
     # TERM LEVEL (*, /, %)
-    # --------------------------------------------------------
+
     def parse_term(self):
         value = self.parse_factor()
 
@@ -138,9 +128,9 @@ class Parser:
 
         return value
 
-    # --------------------------------------------------------
+   
     # FACTOR LEVEL
-    # --------------------------------------------------------
+ 
     def parse_factor(self):
         token = self.current_token()
 
@@ -187,9 +177,9 @@ class Parser:
         )
 
 
-# ------------------------------------------------------------
+
 # EVALUATION FUNCTION
-# ------------------------------------------------------------
+
 def evaluate(expression):
     tokens = tokenize(expression)
     parser = Parser(tokens)
@@ -205,15 +195,15 @@ def evaluate(expression):
     return result
 
 
-# ------------------------------------------------------------
+
 # MAIN PROGRAM (USER INPUT MODE)
-# ------------------------------------------------------------
+
 if __name__ == "__main__":
 
-    print("===================================================")
+    print("************************************************")
     print(" LLM-Inspired Recursive Descent Parser (CSC 461)")
     print(" Type 'exit' to terminate the program")
-    print("===================================================\n")
+    print("************************************************\n")
 
     history = []  # Store previous expressions and results
 
