@@ -201,6 +201,7 @@ def evaluate(expression):
 if __name__ == "__main__":
 
     print("************************************************")
+    print("------------------------------------------------")
     print(" LLM-Inspired Recursive Descent Parser (CSC 461)")
     print(" Type 'exit' to terminate the program")
     print("************************************************\n")
