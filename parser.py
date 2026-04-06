@@ -205,6 +205,7 @@ if __name__ == "__main__":
     print(" LLM-Inspired Recursive Descent Parser (CSC 461)")
     print(" Type 'exit' to terminate the program")
     print("************************************************\n")
+    prrint("-----------------------------------------------\n")
 
     history = []  # Store previous expressions and results
 
